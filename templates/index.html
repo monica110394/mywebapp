@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>ScrubShrubs - Arrowhead Locator</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+  <!-- Facebook Opengraph integration: https://developers.facebook.com/docs/sharing/opengraph -->
+  <meta property="og:title" content="">
+  <meta property="og:image" content="">
+  <meta property="og:url" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:description" content="">
+
+  <!-- Favicons -->
+  <link href="../static/img/favicon.png" rel="icon">
+  <link href="../static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,700|Roboto:400,900" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../static/css/style.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <style>
+    /* body {
+      margin:0px;
+      height:100vh;
+      background:#333;
+    } */
+    .center {
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .form-input {
+      width:250px;
+      padding:20px;
+      background:#fff;
+      border:1px dashed #555;
+    }
+    .form-input input {
+      display:none;
+    }
+    .form-input label {
+      display:block;
+      width:100%;
+      height:50px;
+      line-height:50px;
+      text-align:center;
+      background:#333;
+      color:#fff;
+      font-size:15px;
+      font-family:"Open Sans",sans-serif;
+      text-transform:Uppercase;
+      font-weight:600;
+      border-radius:10px;
+      cursor:pointer;
+    }
+
+    .form-input img {
+      width:100%;
+      display:none;
+      margin-top:10px;
+    }
+    </style>
+</head>
+
+<body>
+
+  <!-- ======= Landing Section ======= -->
+  <section class="hero">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-12" style="margin-top: 0px;">
+          <a class="hero-brand" href="index.html" title="Home"><img alt="Bell Logo" src="../static/img/logo.png"></a>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <h1>
+          Welcome to the Arrowhead Movement
+        </h1>
+
+        <p class="tagline">
+          Conserve Barmah National Park by making it Arrowhead-free.
+        </p>
+        <div class="overlay-detail">
+          <a href="#about"><i class="fa fa-chevron-circle-down" style='font-size:48px;color:white; margin-bottom: 0px;'></i></a>
+        </div>
+        <!-- <a class="btn btn-full" href="#about">Get Started Now</a> -->
+      </div>
+    </div>
+  </section>
+  <!-- End Landing -->
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <a href="index.html"><img src="../static/img/navlogo.png" alt=""></a>
+        <!-- Uncomment below if you prefer to use a text image -->
+        <!-- <h1><a href="#hero">Bell</a></h1> -->
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li><a href="#about">About Arrowhead</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#portfolio">Gallery</a></li>
+          <li><a href="#team">Tips</a></li>
+          <li><a href="#team">Report</a></li>
+          <li><a href="#team">Sightings</a></li>
+          <!-- <li class="menu-has-children"><a href="">Drop Down</a>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li class="menu-has-children"><a href="#">Drop Down 2</a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+              <li><a href="#">Drop Down 5</a></li>
+            </ul>
+          </li> -->
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </nav>
+      <!-- #nav-menu-container -->
+
+      <nav class="nav social-nav pull-right d-none d-lg-inline">
+        <a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-github" aria-hidden="true" style="font-size: 28px;"></i></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<img src="../static/img/rsz_site-logo-white.png" style="margin-bottom: 10px;">
+      </nav>
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section class="about" id="about">
+
+      <div class="container text-center">
+        <h2>
+          About Arrowhead
+        </h2>
+
+        <p>
+          Arrowhead aka Delta Arrowhead (Sagittaria platyphylla) is a aquatic plant species that is considered as a noxious weed.
+          It is native to the southern Australia capable of aggressive growth and rapid spread. The plant is found in ponds, lakes and slow-moving streams.
+          Some of the leaves are completely submerged, others emerge (raising above the surface of the water).
+        </p>
+        <p>
+          Sagittaria forms extensive infestations in shallow waterways, severely limiting the flow of water and increasing sedimentation, thus aggravating floods.
+          The potential for large-scale soil movements with limited off-shore effects will be increased flooding chances.
+          It can block irrigation channels, hinder the flow of water and stifle natural watercourses and wetlands.
+          Decaying plant materials help pollute and sediment water and can increase the risk of blooming algal and microbial activity.
+        </p>
+
+        <div class="row stats-row">
+          <div class="stats-col text-center col-md-3 col-sm-6">
+          <!--  <div class="circle">
+              <span class="stats-no" data-toggle="counter-up">232</span> In Australia
+            </div>  -->
+          </div>
+
+          <div class="stats-col text-center col-md-3 col-sm-6">
+            <div class="circle">
+              <span class="stats-no" data-toggle="counter-up">232</span> In Australia
+            </div>
+          </div>
+
+          <div class="stats-col text-center col-md-3 col-sm-6">
+            <div class="circle">
+              <span class="stats-no" data-toggle="counter-up">79</span> Barmah Forest
+            </div>
+          </div>
+
+          <div class="stats-col text-center col-md-3 col-sm-6">
+          <!-- <div class="circle">
+              <span class="stats-no" data-toggle="counter-up">15</span> Hard Workers
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+    </section><!-- End About Section -->
+
+    <!-- ======= Welcome Section ======= -->
+    <!-- <section class="welcome text-center">
+      <h2>Welcome to a perfect theme</h2>
+      <p>
+        This is the most powerful theme with thousands of options that you have never seen before.
+      </p>
+      <img alt="Bell - A perfect theme" class="gadgets-img hidden-md-down" src="../static/img/gadgets.png">
+    </section> -->
+    <!-- End Welcome Section -->
+
+    <!-- ======= Features Section ======= -->
+    <section class="features" id="features">
+
+      <div class="container">
+        <h2 class="text-center">
+          Features
+        </h2>
+
+        <div class="row">
+
+           <!-- ======= GALLERY ======= -->
+          <div class="feature-col col-lg-4 col-xs-12">
+            <div class="card card-block text-center">
+              <div>
+                <div class="feature-icon">
+                  <i class="fa fa-picture-o" aria-hidden="true" style="font-size:x-large;"></i>
+                  <!-- <span class="fa fa-rocket"></span> -->
+                </div>
+              </div>
+              <div>
+                <h3>
+                  View Gallery
+                </h3>
+                <p>
+                  Our team has sourced photos of Arrowhead for your reference.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ======= TIPS ======= -->
+          <div class="feature-col col-lg-4 col-xs-12">
+            <div class="card card-block text-center">
+              <div>
+                <div class="feature-icon">
+                  <i class="fa fa-camera" aria-hidden="true" style="font-size: x-large;"></i>
+                  <!-- <span class="fa fa-bell"></span> -->
+                </div>
+              </div>
+              <div>
+                <h3>
+                  View Tips
+                </h3>
+                <p>
+                  Eque feugiat contentiones ei has. Id summo mundi explicari his, nec in maiorum scriptorem.
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+        <!-- ======= IDENTIFY ======= -->
+        <div class="feature-col col-lg-4 col-xs-12">
+          <div class="card card-block text-center">
+            <div>
+              <div class="feature-icon">
+                <i class="fa fa-search" aria-hidden="true" style="font-size:x-large;"></i>
+                <!-- <span class="fa fa-envelope"></span> -->
+              </div>
+            </div>
+            <div>
+              <h3>
+              Identifying Arrowhead
+              </h3>
+              <p>
+              Identify if your photographed plant is an Arrowhead using our AI technology.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <!-- ======= LOCATION ======= -->
+        <div class="feature-col col-lg-4 col-xs-12">
+          <div class="card card-block text-center">
+            <div>
+              <div class="feature-icon">
+                <i class="fa fa-location-arrow" aria-hidden="true" style="font-size:xx-large;"></i>
+                <!-- <span class="fa fa-database"></span> -->
+              </div>
+            </div>
+
+            <div>
+              <h3>
+                Share Location
+              </h3>
+
+              <p>
+                Eque feugiat contentiones ei has. Id summo mundi explicari his, nec in maiorum scriptorem.
+              </p>
+            </div>
+          </div>
+        </div>
+
+         <!-- ======= REPORT ======= -->
+        <div class="feature-col col-lg-4 col-xs-12">
+          <div class="card card-block text-center">
+            <div>
+              <div class="feature-icon">
+                <i class="fa fa-flag" aria-hidden="true" style="font-size: x-large;"></i>
+                <!-- <span class="fa fa-cutlery"></span> -->
+              </div>
+            </div>
+
+            <div>
+              <h3>
+                Report
+              </h3>
+
+              <p>
+                Eque feugiat contentiones ei has. Id summo mundi explicari his, nec in maiorum scriptorem.
+              </p>
+            </div>
+          </div>
+        </div>
+
+         <!-- ======= MAP ======= -->
+        <div class="feature-col col-lg-4 col-xs-12">
+          <div class="card card-block text-center">
+            <div>
+              <div class="feature-icon">
+                <i class="fa fa-map" aria-hidden="true"></i>
+
+                <!-- <span class="fa fa-dashboard"></span> -->
+              </div>
+            </div>
+
+            <div>
+              <h3>
+                View Sightings
+              </h3>
+              <p>
+                Eque feugiat contentiones ei has. Id summo mundi explicari his, nec in maiorum scriptorem.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </section><!-- End Features Section -->
+
+
+    <!-- ======= Gallery Section ======= -->
+    <section class="portfolio" id="portfolio">
+
+      <div class="container text-center">
+        <h2>
+          Gallery
+        </h2>
+
+        <!-- <p>
+          Voluptua scripserit per ad, laudem viderer sit ex. Ex alia corrumpit voluptatibus usu, sed unum convenire id. Ut cum nisl moderatius, Per nihil dicant commodo an.
+        </p> -->
+      </div>
+
+      <div class="portfolio-grid">
+
+        <div class="row">
+          <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="card card-block">
+              <a href="../static/img/wallpaper02.png" class="venobox" data-gall="portfolioGallery"><img alt="" src="../static/img/wall02.png">
+                <div class="portfolio-over">
+                  <div>
+                    <h3 class="card-title">
+                      The Dude Rockin'
+                    </h3>
+
+                    <p class="card-text">
+                      Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="card card-block">
+              <a href="../static/img/wallpaper01.jpg" class="venobox" data-gall="portfolioGallery"><img alt="" src="../static/img/wall01.jpg">
+                <div class="portfolio-over">
+                  <div>
+                    <h3 class="card-title">
+                      The Dude Rockin'
+                    </h3>
+
+                    <p class="card-text">
+                      Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="card card-block">
+              <a href="../static/img/wallpaper03.jpg" class="venobox" data-gall="portfolioGallery"><img alt="" src="../static/img/wall03.png">
+                <div class="portfolio-over">
+                  <div>
+                    <h3 class="card-title">
+                      The Dude Rockin'
+                    </h3>
+
+                    <p class="card-text">
+                      Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="card card-block">
+              <a href="../static/img/wallpaper04.jpg" class="venobox" data-gall="portfolioGallery"><img alt="" src="../static/img/wall04.png">
+                <div class="portfolio-over">
+                  <div>
+                    <h3 class="card-title">
+                      The Dude Rockin'
+                    </h3>
+
+                    <p class="card-text">
+                      Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="card card-block">
+              <a href="../static/img/wallpaper05.jpg" class="venobox" data-gall="portfolioGallery"><img alt="" src="../static/img/wall05.png">
+                <div class="portfolio-over">
+                  <div>
+                    <h3 class="card-title">
+                      The Dude Rockin'
+                    </h3>
+
+                    <p class="card-text">
+                      Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="card card-block">
+              <a href="../static/img/wallpaper06.jpg" class="venobox" data-gall="portfolioGallery"><img alt="" src="../static/img/wall06.png">
+                <div class="portfolio-over">
+                  <div>
+                    <h3 class="card-title">
+                      The Dude Rockin'
+                    </h3>
+
+                    <p class="card-text">
+                      Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="card card-block">
+              <a href="../static/img/wallpaper07.jpg" class="venobox" data-gall="portfolioGallery"><img alt="" src="../static/img/wall07.png">
+                <div class="portfolio-over">
+                  <div>
+                    <h3 class="card-title">
+                      The Dude Rockin'
+                    </h3>
+
+                    <p class="card-text">
+                      Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="card card-block">
+              <a href="../static/img/wallpaper08.jpg" class="venobox" data-gall="portfolioGallery"><img alt="" src="../static/img/wall08.png">
+                <div class="portfolio-over">
+                  <div>
+                    <h3 class="card-title">
+                      The Dude Rockin'
+                    </h3>
+
+                    <p class="card-text">
+                      Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- End Portfolio Section -->
+
+    <!-- ======= Tips Section ======= -->
+    <section class="team" id="team">
+      <div class="container">
+        <h2 class="text-center">
+          Tips
+        </h2>
+
+        <div class="row">
+
+          <!-- <div class="col-sm-3 col-xs-6">
+            <div class="card card-block">
+              <a href="#"><img alt="" class="team-img" src="../static/img/team-1.jpg">
+                <div class="card-title-wrap">
+                  <span class="card-title">Sergio Fez</span> <span class="card-text">Art Director</span>
+                </div>
+
+                <div class="team-over">
+                  <h4 class="hidden-md-down">
+                    Connect with me
+                  </h4>
+
+                  <nav class="social-nav">
+                    <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-envelope"></i></a>
+                  </nav>
+
+                  <p>
+                    Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                  </p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-sm-3 col-xs-6">
+            <div class="card card-block">
+              <a href="#"><img alt="" class="team-img" src="../static/img/team-2.jpg">
+                <div class="card-title-wrap">
+                  <span class="card-title">Sergio Fez</span> <span class="card-text">Art Director</span>
+                </div>
+
+                <div class="team-over">
+                  <h4 class="hidden-md-down">
+                    Connect with me
+                  </h4>
+
+                  <nav class="social-nav">
+                    <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-envelope"></i></a>
+                  </nav>
+
+                  <p>
+                    Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                  </p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-sm-3 col-xs-6">
+            <div class="card card-block">
+              <a href="#"><img alt="" class="team-img" src="../static/img/team-3.jpg">
+                <div class="card-title-wrap">
+                  <span class="card-title">Sergio Fez</span> <span class="card-text">Art Director</span>
+                </div>
+
+                <div class="team-over">
+                  <h4 class="hidden-md-down">
+                    Connect with me
+                  </h4>
+
+                  <nav class="social-nav">
+                    <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-envelope"></i></a>
+                  </nav>
+
+                  <p>
+                    Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                  </p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-sm-3 col-xs-6">
+            <div class="card card-block">
+              <a href="#"><img alt="" class="team-img" src="../static/img/team-4.jpg">
+                <div class="card-title-wrap">
+                  <span class="card-title">Sergio Fez</span> <span class="card-text">Art Director</span>
+                </div>
+
+                <div class="team-over">
+                  <h4 class="hidden-md-down">
+                    Connect with me
+                  </h4>
+
+                  <nav class="social-nav">
+                    <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-envelope"></i></a>
+                  </nav>
+
+                  <p>
+                    Lorem ipsum dolor sit amet, eu sed suas eruditi honestatis.
+                  </p>
+                </div>
+              </a>
+            </div>
+          </div> -->
+
+        </div>
+      </div>
+    </section>
+    <!-- End Team Section -->
+
+
+    <!-- ======= Identify Section ======= -->
+    <section id="contact">
+      <div class="container">
+      <div class="col-md-12 text-center">
+      <h2 class="section-title">Identify</h2>
+      <div>
+        <div class="col-md-12 text-center">
+                <!-- ======= Start of Monica's code ======= -->
+                <!-- ======= Monica's code for selecting image ======= -->
+                <div class="center">
+                <div class="form-input">
+                <label for="image-selector">Take a picture</label>
+                <input id="image-selector" name="myFile" type="file" class="btn" style="font-size: 20px;
+                  font-weight: bolder; border-radius: 10px" accept="image/*" onchange="showPreview(event)" capture>
+                <div class="preview">
+                <img id="file-ip-1-preview">
+                </div>
+                </div>
+                </div>
+
+                <!-- ======= Monica's script for previewing selected image ======= -->
+                <script>
+                function showPreview(event){
+                    if(event.target.files.length > 0){
+                        var src = URL.createObjectURL(event.target.files[0]);
+                        var preview = document.getElementById("file-ip-1-preview");
+                        preview.src = src;
+                        preview.style.display = "block";
+                    }
+                }
+                </script>
+                <br>
+              <!--  <button type="submit" id="predict-button" class="btn btn-primary btn-lg" style="font-size: 20px;font-weight: bolder; border-radius: 10px;" >Identify</button> -->
+               <button type="submit" id="predict-button" class="btn btn-primary btn-lg" style="font-size: 20px;font-weight: bolder; border-radius: 10px;"
+               data-toggle="modal" data-target="#submit">Identify</button>
+
+              <!--    ======= Monica's code for negative division ======= -->
+                <div id="negative">
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <p class="text-faded mb-5" style="margin: -22px;font-size: 21px;;">Sorry! Not an Arrowhead. Thank you for your participation.</p>
+               </div>  <!-- end of negative division -->
+
+               <!--  ======= Monica's code for positive division ======= -->
+               <div id="positive">
+                 <p class="text-faded mb-5" style="margin: -22px;font-size: 21px;;">Congratulations! You have identified an Arrowhead.</p>
+                 <p class="text-faded mb-5" style="margin: -22px;font-size: 21px;;">We have successfully submitted your response.</p>
+               </div>  <!-- end of positive division -->
+
+               <!-- ======= Keeping negative and positive division hidden ======= -->
+               <script>
+               document.getElementById("negative").style.visibility = "hidden";
+               document.getElementById("positive").style.visibility = "hidden";
+               </script>
+
+               <!-- ======= Monica's script for prediction ======= -->
+               <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+               <script>
+                   let base64Image, pred_arr, pred_neg;
+                   $("#image-selector").change(function() {
+                     let reader = new FileReader();
+                     reader.onload = function(e) {
+                         let dataURL = reader.result;
+                         $('#selected-image').attr("src",dataURL);
+                         base64Image = dataURL.replace("data:image/jpeg;base64,","");
+                         console.log(base64Image);
+                     }
+                     reader.readAsDataURL($("#image-selector")[0].files[0]);
+                   });
+                   $("#predict-button").click(function(event){
+                    let message = {
+                        image: base64Image
+                   }
+                   console.log(message);
+                   $.post("/predict", JSON.stringify(message), function(response){
+                     if (response.arrowhead==1){
+                       document.getElementById("positive").style.visibility = "visible";
+                     }else{
+                       document.getElementById("negative").style.visibility = "visible";
+                     }
+                         console.log(response);
+                     });
+                   });
+               </script>
+
+               <!-- Modal
+
+               <button type="submit" id="submit" class="btn btn-primary btn-lg" style="font-size: 20px;font-weight: bolder; border-radius: 10px;"
+                 data-toggle="modal" data-target="#submit">Report the Predictions
+               </button>
+
+               <div class="modal fade" id="submit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                 <div class="modal-dialog" role="document">
+                   <div class="modal-content">
+                     <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                       </button>
+                     </div>
+                     <div class="modal-body">
+                       Thank you for taking a step closer towards conservation!!
+                     </div>
+                     <div class="modal-footer">
+                       <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                     </div>
+                   </div>
+                 </div>
+               </div> -->
+
+               <!-- Script for capturing location on page load -->
+               <script>
+                   if (navigator.geolocation) {
+                       navigator.geolocation.getCurrentPosition(function(position) {
+                           pos = {
+                               lat: position.coords.latitude,
+                               lng: position.coords.longitude
+                           };
+                           $.post({
+                                       url: "/location",
+                                       contentType: "application/json",
+                                       data: JSON.stringify({location: pos}),
+                                       dataType: "json",
+                                       success: function(response) {
+                                           console.log(response);
+                                       },
+                                       error: function(err) {
+                                           console.log(err);
+                                       }
+                                 });
+                       },
+                       function(error) {
+                           if (error.code == error.PERMISSION_DENIED)
+                             pos = {
+                                 lat: null,
+                                 lng: null
+                             };
+                             $.post({
+                                         url: "/location",
+                                         contentType: "application/json",
+                                         data: JSON.stringify({location: pos}),
+                                         dataType: "json",
+                                         success: function(response) {
+                                             console.log(response);
+                                         },
+                                         error: function(err) {
+                                             console.log(err);
+                                         }
+                                     });
+                               });
+                     }
+                 </script>
+               <!-- ======= End of Monica's code ======= -->
+        </div>
+      </div>
+    </section>
+    <!-- End Identify Section -->
+
+
+    <!-- ======= Map Section ======= -->
+    <section id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h2 class="section-title">Sightings</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="map">
+        <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
+      </div>
+
+  <!--    <div class="row">
+        <div class="col-md-12 text-center">
+           ======= Monica Insert code within this section =======
+        </div>
+        <div class="col-md-12">
+        </div>
+      </div>
+    </div> -->
+    </section>
+    <!-- End Contact Section -->
+
+
+
+
+    <!-- ======= Contact Section ======= -->
+    <!-- <section id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h2 class="section-title">Contact Us</h2>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-3 col-md-4">
+            <div class="info">
+              <div>
+                <i class="fa fa-map-marker"></i>
+                <p>A108 Adam Street<br>New York, NY 535022</p>
+              </div>
+
+              <div>
+                <i class="fa fa-envelope"></i>
+                <p>info@example.com</p>
+              </div>
+
+              <div>
+                <i class="fa fa-phone"></i>
+                <p>+1 5589 55488 55s</p>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-lg-5 col-md-8">
+            <div class="form">
+              <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                <div class="form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div class="validate"></div>
+                </div>
+                <div class="form-group">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                  <div class="validate"></div>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                  <div class="validate"></div>
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                  <div class="validate"></div>
+                </div>
+                <div class="mb-3">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+                </div>
+                <div class="text-center"><button type="submit">Send Message</button></div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section> -->
+    <!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer class="site-footer">
+    <div class="bottom">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-6 col-xs-12 text-lg-left text-center">
+            <p class="copyright-text">
+              &copy; Copyright <strong>ScrubShrubs</strong>. All Rights Reserved
+            </p>
+            <div class="credits">
+              <!--
+              All the links in the footer should remain intact.
+              You can delete the links only if you purchased the pro version.
+              Licensing information: https://bootstrapmade.com/license/
+              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Bell
+            -->
+              Designed by <a href="#">FloraGuru</a>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-xs-12 text-lg-right text-center">
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a href="index.html">Home</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="#about">About Arrowhead</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="#portfolio">Gallery</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="#contact">Report</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="#contact">Sightings</a>
+              </li>
+
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a class="scrolltop" href="#"><span class="fa fa-angle-up"></span></a>
+
+  <!-- Vendor JS Files -->
+  <script src="../static/vendor/jquery/jquery.min.js"></script>
+  <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="../static/vendor/php-email-form/validate.js"></script>
+  <script src="../static/vendor/counterup/counterup.min.js"></script>
+  <script src="../static/vendor/tether/js/tether.min.js"></script>
+  <script src="../static/vendor/jquery-sticky/jquery.sticky.js"></script>
+  <script src="../static/vendor/venobox/venobox.min.js"></script>
+  <script src="../static/vendor/lockfixed/jquery.lockfixed.min.js"></script>
+  <script src="../static/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="../static/vendor/superfish/superfish.min.js"></script>
+  <script src="../static/vendor/hoverIntent/hoverIntent.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../static/js/main.js"></script>
+
+</body>
+
+</html>
