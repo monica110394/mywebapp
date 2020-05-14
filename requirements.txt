@@ -117,6 +117,7 @@ tblib==1.6.0
 tensorboard==1.13.1
 tensorflow==1.13.1
 tensorflow-estimator==1.13.0
+gunicorn==19.7.1
 
 
 
