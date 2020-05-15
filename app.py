@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime as dt
 import secrets
 import pymysql
-import tensorflow
+import tensorflow as tf
 # import matplotlib.pyplot as plt
 # import json
 pymysql.install_as_MySQLdb()
@@ -31,11 +31,11 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-def get_model():
-    global model
-    model=tensorflow.keras.models.load_model('model_1_2.h5')
-#    model=load_model('model_1_2.h5')
-    print(" * Model loaded!")
+# def get_model():
+#     global model
+#     model=tensorflow.keras.models.load_model('model_1_2.h5')
+#     model=load_model('model_1_2.h5')
+#     print(" * Model loaded!")
     
 def preprocess_image(image, target_size):
     if image.mode != "RGB":
@@ -48,7 +48,6 @@ def preprocess_image(image, target_size):
 @app.route("/predict",methods=['POST'])
 def predict(): 
     global file, pred_neg, pred_arr
-    # file=request.files['myFile']
     message=request.get_json(force=True)
     encoded=message['image']
     decoded=base64.b64decode(encoded) 
@@ -56,7 +55,7 @@ def predict():
     file = decoded
     processed_image=preprocess_image(image, target_size=(224,224))
     global model
-    model=tensorflow.keras.models.load_model('model_1_2.h5', compile=False)
+    model=tf.keras.models.load_model('model_1_2.h5', compile=False)
     prediction = model.predict(processed_image).tolist()
     pred_neg = prediction[0][0]
     pred_arr = prediction[0][1]
@@ -66,11 +65,10 @@ def predict():
         'arrowhead':pred_arr
         } 
     print("\nPrediction:",response,"\n")
-    return jsonify(response)
-    # if pred_arr==1:
-    #     return 'Arrowhead Identified. Would you like to Report?'
-    # else:
-    #     return 'Not an Arrowhead. Thank you for participating!'
+    if pred_arr>pred_neg:
+        return jsonify({"isArrowhead":True,"message":"Congratulations! You have identified an Arrowhead. We have submitted your response successfully."})
+    else:
+        return jsonify({"isArrowhead":False,"message":"Sorry! It is not identified as an Arrowhead. Thank you for participating!"})
 
 class DBConfig(object):
     DIALECT = 'mysql'
@@ -119,10 +117,6 @@ def location():
 def upload():
     global i_d
     i_d = secrets.token_hex(16)
-    # location = json.loads(dict(request.form)["location"])["location"]
-    # print(location["lat"])
-    # print(location["lng"])
-    # file=request.files['myFile'] 
     role1 = SS(id=i_d, data=file, latitude=lat, longitude=lng, isNegative=pred_neg, isArrowhead=pred_arr, date_time=dt.now())
     db.session.add(role1)
     db.session.commit()
@@ -130,6 +124,7 @@ def upload():
 
 if __name__ == "__main__":
     app.run()
+
     
     
 
