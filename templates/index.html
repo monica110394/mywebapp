@@ -38,6 +38,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="../static/js/home.js"></script>
+
+  <!-- map -->
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css" rel="stylesheet" />
+
   <style>
     /* body {
       margin:0px;
@@ -65,11 +72,11 @@
       height:50px;
       line-height:50px;
       text-align:center;
-      background:#333;
+      background:#199EB8;
       color:#fff;
-      font-size:15px;
-      font-family:"Open Sans",sans-serif;
-      text-transform:Uppercase;
+      font-size:20px;
+      /* font-family:"Open Sans",sans-serif; */
+      /* text-transform:Uppercase; */
       font-weight:600;
       border-radius:10px;
       cursor:pointer;
@@ -80,6 +87,55 @@
       display:none;
       margin-top:10px;
     }
+
+    #map { position: relative; height: 350px;  width: 100%; }
+
+	.marker {
+      background-size:cover;
+      width: 50px;
+      height: 62px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .btn1{/*dent around button*/
+    /* display: inline-block; */
+    position: relative;
+    text-decoration: none;
+    color: rgba(3, 169, 244, 0.54);
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    text-align: center;
+    border: none;
+    background: none;
+    padding: 0;
+    background: #f7f7f7;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.08);
+}
+.btn1 .fa {
+    position: absolute;
+    content: '';
+    width: 70px;
+    height: 70px;
+    line-height: 80px;
+    vertical-align: middle;
+    left: 10px;
+    top: 9px;
+    border-radius: 50%;
+    font-size: 40px;
+    background-image: -webkit-linear-gradient(#e8e8e8 0%, #d6d6d6 100%);
+    background-image: linear-gradient(#e8e8e8 0%, #d6d6d6 100%);
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.66);
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.5), 0 2px 2px rgba(0, 0, 0, 0.19);
+    border-bottom: solid 2px #b5b5b5;
+  }
+
+.btn1 .fa:active{
+    background-image: -webkit-linear-gradient(#efefef 0%, #d6d6d6 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 2px 2px rgba(0, 0, 0, 0.19);
+    border-bottom: solid 2px #d8d8d8;
+}
   </style>
 </head>
 
@@ -126,8 +182,8 @@
           <li><a href="#about">About Arrowhead</a></li>
           <li><a href="#features">Features</a></li>
           <li><a href="#portfolio">Gallery</a></li>
-          <li><a href="#report">Report</a></li>
-          <li><a href="#map">Sightings</a></li>
+          <li><a href="#find">Find Arrowhead</a></li>
+          <li><a href="#map">Distribution</a></li>
           <!-- <li><a href="#contact">Contact Us</a></li> -->
         </ul>
       </nav>
@@ -154,6 +210,7 @@
           The plant is found in ponds, lakes and slow-moving streams.
           Some of the leaves are completely submerged, others emerge (raising above the surface of the water).
         </p>
+        <br>
         <p>
           Sagittaria forms extensive infestations in shallow waterways, severely limiting the flow of water and increasing sedimentation, thus aggravating floods.
           The potential for large-scale soil movements with limited off-shore effects will be increased flooding chances.
@@ -185,8 +242,8 @@
               <span class="stats-no" data-toggle="counter-up">79</span> Barmah Forest
             </div> -->
           </div>
-
         </div>
+
       </div>
 
     </section>
@@ -217,7 +274,7 @@
                   View Gallery
                 </h3>
                 <p>
-                  Our team has sourced photos of Arrowhead for your reference
+                  Our team has sourced images of Arrowhead for your reference
                 </p>
               </div>
             </div>
@@ -236,7 +293,7 @@
                   View Tips
                 </h3>
                 <p>
-                  Check out the Do's and Don'ts of clicking the image
+                  Check out the correct way to click a picture
                 </p>
               </div>
             </div>
@@ -257,7 +314,7 @@
               Identifying Arrowhead
               </h3>
               <p>
-              Identify if your photographed plant is an Arrowhead using our AI technology.
+              Identify whether a plant is an Arrowhead using our AI technology
               </p>
             </div>
           </div>
@@ -282,7 +339,7 @@
                 Share Location
               </h3>
               <p>
-                Switch on your GPS to store the arrowhead location
+                Switch on your GPS to help us locate Arrowhead
               </p>
             </div>
           </div>
@@ -303,7 +360,7 @@
                 Report
               </h3>
               <p>
-                Help report the arrowhead
+                Help report the Arrowhead
               </p>
             </div>
           </div>
@@ -322,10 +379,10 @@
 
             <div>
               <h3>
-                View Sightings
+                View Distribution
               </h3>
               <p>
-                See the arrowheads around you on the map
+                See the Arrowheads around you on the map
               </p>
             </div>
           </div>
@@ -472,11 +529,14 @@
 
 
     <!-- ======= Identify Section ======= -->
+
     <section id="contact">
       <div class="container text-center">
-        <h2 class="section-title">Report</h2>
+        <h2 class="section-title">Find Arrowhead</h2>
         <div class="row">
-          <div class="col-lg-8">
+
+          <div class="find", id="find">
+          <!-- <div class="col-lg-8">
             <div class="row">
               <div class="col-lg-4 container-fluid text-center">
                 <h5 class="section-title"><U>Do</U></h5>
@@ -491,7 +551,8 @@
                 <p id="info">Multiple leaves in the same photo disrupts the algorithm.</p>
               </div>
             </div>
-          </div>
+          </div> -->
+        </div>
 
 
         <div class="col-lg-4 text-center">
@@ -504,7 +565,7 @@
                 <!-- ======= Monica's code for selecting image ======= -->
                 <div class="center">
                   <div class="form-input">
-                    <label for="image-selector">Take a picture</label>
+                    <label for="image-selector">Click Picture</label>
                     <input id="image-selector" name="myFile" type="file" class="btn" style="font-size: 20px;
                       font-weight: bolder; border-radius: 10px" accept="image/*" onchange="showPreview(event)" capture>
                     <div class="preview">
@@ -526,8 +587,13 @@
                 </script>
                 <br>
 
-               <button type="submit" id="predict-button" class="btn btn-primary" style="font-size: 20px;font-weight: bolder; border-radius: 10px;"
-               data-toggle="modal" data-target="#submit">Identify</button>
+               <!-- <button type="submit" id="predict-button" class="btn btn-primary" style="font-size: 20px;font-weight: bolder; border-radius: 10px;"
+               data-toggle="modal" data-target="#submit">Identify</button> -->
+
+               <button href="#" type="submit" id="predict-button" class="btn1" style="font-size: 20px;font-weight: bolder; border-radius: 10px;"
+               data-toggle="modal" data-target="#submit">
+	                <i class="fa fa-leaf" color=#199EB8></i>
+              </button>
 
                <!-- ======= Monica's script for prediction ======= -->
                <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -648,22 +714,45 @@
 
     <!-- ======= Map Section ======= -->
     <section id="contact">
+
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
-            <h2 class="section-title">Sightings</h2>
+            <h2 class="section-title">Distribution</h2>
           </div>
         </div>
       </div>
 
-      <div class="map">
-        <!-- Insert map here for dexi and wei-->
+      <div class="map", id="map">
+          <!-- Insert map here for dexi and wei-->
+          <script>
+            mapboxgl.accessToken = 'pk.eyJ1Ijoid2VpbSIsImEiOiJja2Ewd3VzbDUwNmc2M2ZwZDV6N3pwdmhvIn0.EJHXebn_BEqc2lzZU6KrRQ';
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v11',
+                center: [145.1175, -35.8667],
+                zoom: 9
+             });
+            map.on('load', function () {
+            var locations = {{ locations|safe }}
+            locations.forEach(function(marker) {
+               var el = document.createElement('div');
+               el.className = 'marker';
+               el.style.backgroundImage = 'url(https://i.imgur.com/MK4NUzI.png)';
+               el.style.left = '-15px';
+               el.style.top = '-32px';
 
+               new mapboxgl.Marker(el)
+                 .setLngLat(marker.geometry.coordinates)
+                 .addTo(map);
+               });
+            });
+        </script>
+        </div>
+        </div>
 
-
-      </div>
     </section>
-    <!-- End Contact Section -->
+    <!-- End Map Section -->
 
 
   </main>
@@ -693,7 +782,7 @@
           <div class="col-lg-6 col-xs-12 text-lg-right text-center">
             <ul class="list-inline">
               <li class="list-inline-item">
-                <a href="index.html">Home</a>
+                <a href="#">Home</a>
               </li>
 
               <li class="list-inline-item">
@@ -705,11 +794,11 @@
               </li>
 
               <li class="list-inline-item">
-                <a href="#contact">Report</a>
+                <a href="#find">Find Arrowhead</a>
               </li>
 
               <li class="list-inline-item">
-                <a href="#contact">Sightings</a>
+                <a href="#map">Distribution</a>
               </li>
 
             </ul>

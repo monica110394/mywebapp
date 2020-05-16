@@ -5,6 +5,8 @@ from datetime import datetime as dt
 import secrets
 import pymysql
 import tensorflow as tf
+from geojson import Point, Feature
+import mysql.connector
 # import matplotlib.pyplot as plt
 # import json
 pymysql.install_as_MySQLdb()
@@ -29,7 +31,46 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    locations = create_locations_makers()
+    return render_template('index.html', ACCESS_KEY=MAPBOX_ACCESS_KEY, locations=locations)
+
+MAPBOX_ACCESS_KEY = 'pk.eyJ1Ijoid2VpbSIsImEiOiJja2Ewd3VzbDUwNmc2M2ZwZDV6N3pwdmhvIn0.EJHXebn_BEqc2lzZU6KrRQ'
+
+connection = mysql.connector.connect(host='scrubshrub.ciu4ws9ihfad.ap-southeast-2.rds.amazonaws.com',
+                                         database='scrubshrub', user='Scrubshrub', password='sse1881ess')
+sql_select_Query = "SELECT latitude, longitude FROM scrubshrub.test WHERE isArrowhead=1"
+cursor = connection.cursor()
+cursor.execute(sql_select_Query)
+records = cursor.fetchall()
+print("Total number of rows in test is: ", cursor.rowcount)
+# tuple: (lat, lng)
+
+def get_route_image():
+    ROUTE = []
+    for row in list(set(records)):
+        dic = {}
+        dic["lat"] = float(row[0])
+        dic["long"] = float(row[1])
+        ROUTE.append(dic)
+        return ROUTE
+
+# Mapbox driving direction API call
+ROUTE_URL = "https://api.mapbox.com/directions/v5/mapbox/driving/{0}.json?access_token={1}&overview=full&geometries=geojson"
+
+
+def create_locations_makers():
+    locations = []
+    ROUTE = get_route_image()
+    for i in ROUTE:
+        point = Point([i['long'], i['lat']])
+        properties = {
+            'icon': 'campsite'
+            # 'marker-color': '#3bb2d0'
+        }
+        feature = Feature(geometry=point, properties=properties)
+        locations.append(feature)
+    print(locations)
+    return locations
 
 # def get_model():
 #     global model
