@@ -136,6 +136,27 @@
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 2px 2px rgba(0, 0, 0, 0.19);
     border-bottom: solid 2px #d8d8d8;
 }
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid #3498db;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
   </style>
 </head>
 
@@ -146,7 +167,7 @@
     <div class="container text-center">
       <div class="row">
         <div class="col-md-12" style="margin-top: 0px;">
-          <a class="hero-brand" href="index.html" title="Home"><img alt="Bell Logo" src="../static/img/logo.png"></a>
+          <a class="hero-brand" href="#" title="Home"><img alt="Bell Logo" src="../static/img/logo.png"></a>
         </div>
       </div>
 
@@ -159,12 +180,14 @@
           Conserve Barmah National Park by making it Arrowhead-free.
         </p>
         <div class="overlay-detail">
-          <a href="#about"><i class="fa fa-chevron-circle-down" style='font-size:48px;color:white; margin-top: 10px;'></i></a>
-          <a href="#find"><i class="fa fa-camera" style='font-size:48px;color:white; margin-top: 10px;'></i></a>
+          <!-- <a href="#about"><i class="fa fa-chevron-circle-down" style='font-size:48px;color:white; margin-top: 10px;'></i></a>
+          <a href="#find"><i class="fa fa-camera" style='font-size:48px;color:white; margin-top: 10px;'></i></a> -->
+          <a class="btn btn-xs" href="#about" id="btn1">Get Started Now</a>
         </div>
-        <!-- <div class="overlay-detail">
-          <a href="#find"><i class="fa fa-camera" style='font-size:48px;color:white; margin-top: 10px;'></i></a>
-        </div> -->
+        <br>
+        <div class="overlay-detail" style="margin-bottom: 20px;">
+          <a class="btn btn-xs" href="#find" id="btn2">Click a Picture</a>
+        </div>
         <!-- <a class="btn btn-full" href="#about">Get Started Now</a> -->
       </div>
     </div>
@@ -537,43 +560,27 @@
     <section id="contact">
       <div class="container text-center">
         <h2 class="section-title">Find Arrowhead</h2>
-        <div class="find", id="find">
 
+        <div class="find", id="find">
         <div class="row">
                 <div class="col-lg-12 container-fluid text-center">
-                  <img src="../static/img/info-93.png">&nbsp;<span>Please click one leaf photo at a time.</span>
+                  <img src="../static/img/info-93.png">&nbsp;<span>Please click a picture of one leaf at a time</span>
                 </div>
             </div>
-          <!-- <div class="col-lg-8">
-            <div class="row">
-              <div class="col-lg-4 container-fluid text-center">
-                <h5 class="section-title"><U>Do</U></h5>
-                <img src="../static/img/rsz_one_leaf.jpg" class="img-fluid" style="width:100%;display:inline-block">
-                <br>
-                <p id="info">Try to capture one leaf at a time, with clear focus.</p>
-              </div>
-              <div class="col-lg-4 container-fluid text-center">
-                <h5 class="section-title"><U>Don't</U></h5>
-                <img src="../static/img/many_leaf.jpg" class="img-fluid" style="width:100%;display:inline-block">
-                <br>
-                <p id="info">Multiple leaves in the same photo disrupts the algorithm.</p>
-              </div>
-            </div>
-          </div> -->
         </div>
 
 
-        <div class="col-lg-4 text-center">
+        <!-- <div class="col-lg-4 text-center"> -->
 
 
           <!-- <div> -->
           <br>
-            <div class="col-lg-12 text-center">
+            <!-- <div class="col-lg-12 text-center"> -->
                 <!-- ======= Start of Monica's code ======= -->
                 <!-- ======= Monica's code for selecting image ======= -->
                 <div class="center">
                   <div class="form-input">
-                    <label for="image-selector">Click Picture</label>
+                    <label for="image-selector">Click a Picture</label>
                     <input id="image-selector" name="myFile" type="file" class="btn" style="font-size: 20px;
                       font-weight: bolder; border-radius: 10px" accept="image/*" onchange="showPreview(event)" capture>
                     <div class="preview">
@@ -627,10 +634,14 @@
                         $('#pos').prop("src","../static/img/app.png");
                         $('#modalMessage').append(response.message)
                         $('div.modal fade').modal('toggle');
+                        document.getElementById("myMessage").style.visibility = "visible"
+                        jQuery('#myLoad').replaceWith(jQuery('#myMessage'));
                      }else{
                         $('#neg').prop("src","../static/img/alert.png");
                         $('#modalMessage').append(response.message)
                         $('div.modal fade').modal('toggle');
+                        document.getElementById("myMessage").style.visibility = "visible"
+                        jQuery('#myLoad').replaceWith(jQuery('#myMessage'));
                      }
                          console.log(response);
                      });
@@ -650,19 +661,32 @@
                <div class="modal fade" id="submit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                  <div class="modal-dialog modal-dialog-centered" role="document">
                    <div class="modal-content">
+
                      <div class="modal-header">
                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                          <span aria-hidden="true">&times;</span>
                        </button>
                      </div>
+
+                   <div id="myLoad">
+                     <div class="loader" style="margin-left: 165px; margin-top: 50px;"></div>
+                     <p>Analyzing the image...</p>
+                   </div>
+
+                   <div id="myMessage">
                      <div>
                       <img id='pos' src="">
                       <img id='neg' src="">
                      </div>
-
                      <div id="modalMessage" class="modal-body">
-
                      </div>
+                   </div>
+
+                     <script>
+                             // document.getElementById("myLoad").style.visibility = "hidden";
+                             document.getElementById("myMessage").style.visibility = "hidden";
+                     </script>
+
                      <div class="modal-footer">
                        <button type="button" class="btn btn-primary btn-xs" data-dismiss="modal" id="close_btn">Close</button>
                      </div>
@@ -714,8 +738,8 @@
                  </script>
                <!-- ======= End of Monica's code ======= -->
         <!-- </div> -->
-      </div>
-      </div>
+      <!-- </div> -->
+      <!-- </div> -->
     </section>
     <!-- End Identify Section -->
 
