@@ -44,6 +44,8 @@
   <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
   <script src="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js"></script>
   <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css" rel="stylesheet" />
+  <!-- <script src="../static/js/home.js"></script> -->
+
 
   <style>
     /* body {
@@ -182,7 +184,7 @@
         <div class="overlay-detail">
           <!-- <a href="#about"><i class="fa fa-chevron-circle-down" style='font-size:48px;color:white; margin-top: 10px;'></i></a>
           <a href="#find"><i class="fa fa-camera" style='font-size:48px;color:white; margin-top: 10px;'></i></a> -->
-          <a class="btn btn-xs" href="#about" id="btn1">Get Started Now</a>
+          <a class="btn btn-xs" href="#about" id="btn1">Get Started</a>
         </div>
         <br>
         <div class="overlay-detail" style="margin-bottom: 20px;">
@@ -619,7 +621,8 @@
                      reader.onload = function(e) {
                          let dataURL = reader.result;
                          $('#selected-image').attr("src",dataURL);
-                         base64Image = dataURL.replace("data:image/jpeg;base64,","");
+                         // base64Image = dataURL.replace("data:image/jpeg;base64,","");
+                         base64Image=dataURL.replace(/^data:image\/(png|jpeg);base64,/, "");
                          console.log(base64Image);
                      }
                      reader.readAsDataURL($("#image-selector")[0].files[0]);
@@ -766,7 +769,7 @@
                 zoom: 9
              });
             map.on('load', function () {
-            var locations = {{ locations|safe }}
+            var locations = {{ locations|safe }};
             locations.forEach(function(marker) {
                var el = document.createElement('div');
                el.className = 'marker';
