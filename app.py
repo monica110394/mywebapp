@@ -63,7 +63,6 @@ def get_latest_record():
     return latest_record
 
 
-
 def get_records(query):
     cursor = connection.cursor(buffered=True)
     cursor.execute(query)
@@ -76,7 +75,7 @@ def get_records(query):
 
 def get_route():
     latest_record = get_latest_record()
-    sql_select_Query = "SELECT latitude, longitude, id FROM scrubshrub.test WHERE isArrowhead=1 and latitude is not null and longitude is not null"
+    sql_select_Query = "SELECT latitude, longitude, id, date_time FROM scrubshrub.test WHERE isArrowhead=1 and latitude is not null and longitude is not null"
     records = get_records(sql_select_Query)
     print(records)
     # tuple: (lat, lng)
@@ -92,8 +91,10 @@ def get_route():
             dic_latest['time'] = time
             latest.append(dic_latest)
         else:
+            time1 = mel_time(row[3])
             dic["lat"] = float(row[0])
             dic["long"] = float(row[1])
+            dic['time'] = time1
             ROUTE.append(dic)
     return [ROUTE, latest]
 
@@ -106,8 +107,8 @@ def create_locations_makers():
     for i in ROUTE:
         point = Point([i['long'], i['lat']])
         properties = {
-            'icon': 'Users arrowhead data'
-        }
+            'icon': i['time']
+        }    
         feature = Feature(geometry=point, properties=properties)
         locations.append(feature)
     if len(latest) > 0:

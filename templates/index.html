@@ -218,9 +218,9 @@
       <!-- #nav-menu-container -->
 
       <nav class="nav social-nav pull-right d-none d-lg-inline">
-        <!-- <a href="#"><i class="fa fa-facebook"></i></a> -->
+        <a href="https://www.facebook.com/scrubshrubs/"><i class="fa fa-facebook"></i></a>
         <a href="https://github.com/monica110394/mywebapp"><i class="fa fa-github" aria-hidden="true" style="font-size: 28px;"></i></i></a>
-        &nbsp;&nbsp;&nbsp;&nbsp;
+        <!-- &nbsp;&nbsp; -->
         <!-- <img src="../static/img/rsz_site-logo-white.png" style="margin-bottom: 10px;"> -->
         <a href="https://mahara.infotech.monash.edu.au/mahara/view/view.php?id=45296"><img src="../static/img/rsz_site-logo-white.png" style="margin-bottom: 10px;"></a>
       </nav>
@@ -259,13 +259,13 @@
 
           <div class="stats-col text-center col-md-3 col-sm-6">
             <div class="circle">
-              <span class="stats-no" data-toggle="counter-up">579</span> In Australia
+              <span class="stats-no" data-toggle="counter-up">579</span> Arrowheads In Australia
             </div>
           </div>
 
           <div class="stats-col text-center col-md-3 col-sm-6">
             <div class="circle">
-              <span class="stats-no" data-toggle="counter-up">376</span> Barmah Forest
+              <span class="stats-no" data-toggle="counter-up">376</span> Arrowheads in Barmah Forest
             </div>
           </div>
 
@@ -343,7 +343,7 @@
             </div>
             <div>
               <h3>
-              Identifying Arrowhead
+              Identify Arrowhead
               </h3>
               <p>
               Identify whether a plant is an Arrowhead using our AI technology
@@ -381,13 +381,13 @@
         <div class="feature-col col-lg-4 col-xs-12">
           <div class="card card-block text-center">
             <div>
-              <div class="feature-icon">
+              <div class="feature-icon text-center" >
                 <i class="fa fa-flag" aria-hidden="true" style="font-size: x-large;"></i>
                 <!-- <span class="fa fa-cutlery"></span> -->
               </div>
             </div>
 
-            <div>
+            <div class="text-center">
               <h3>
                 Report
               </h3>
@@ -778,23 +778,32 @@
               margin: 0 0 10px;
           }
 
-          .legend div span {
-              border-radius: 50%;
-              display: inline-block;
-              height: 13px;
-              margin-right: 5px;
-              width: 13px;
-              background-position: center;
-              background-size: 100% 100%;
+          .myImg {
+              padding-right: 2px;
+              width: 12px;
+              height: 12px;
+              object-fit: contain;
           }
       </style>
-      <div id="map">
+
+      <!-- <div id="map">
           <div id="marker-legend" class="legend" style="display: block;">
               <h4>Markers</h4>
               <div><span style="background-image: url('./static/img/circle_red.png')"></span>Historical arrowhead location</div>
               <div><span style="background-image: url('./static/img/marker_red.png')"></span>Last arrowhead recognized location </div>
               <div><span style="background-image: url('./static/img/marker1.png')"></span>All arrowhead recognized locations</div>
           </div>
+      </div> -->
+
+      <div id="map">
+        <div id="marker-legend" class="legend" style="display: block;">
+          <h4>Location</h4>
+          <div>
+              <img class="myImg"; src="./static/img/marker1.png" />Historical Arrowhead Location<br>
+              <img class="myImg"; src="./static/img/marker_red.png" />Last Arrowhead Recognized Location<br>
+              <img class="myImg"; src="./static/img/circle_red.png" />All Arrowhead Recognized Locations<br>
+          </div>
+       </div>
       </div>
 
       <script>
@@ -815,9 +824,20 @@
           //<!--add navigation control bar -->
           map.addControl(new mapboxgl.NavigationControl());
 
+          // Initialize the geolocate control
+          var geolocate = new mapboxgl.GeolocateControl({
+           positionOptions: {
+             enableHighAccuracy: true
+           },
+           trackUserLocation: true
+          });
+          // Add the control to the map
+          map.addControl(geolocate);
+          // geolocate control initialization END
 
           map.on('load', function () {
-              <!--add user data points with grass marker-->
+              geolocate.trigger();
+              // add user data points with grass marker
               map.loadImage(
                   './static/img/marker1.png',
                   function(error, image) {
@@ -903,30 +923,15 @@
              // <!--load image till here-->
 
              // <!--Add geolocate control to the map.-->
-              map.addControl(
-                  new mapboxgl.GeolocateControl({
-                  positionOptions: {
-                  enableHighAccuracy: true
-                  },
-                  trackUserLocation: true
-                  })
-              );
+              // map.addControl(
+              //     new mapboxgl.GeolocateControl({
+              //     positionOptions: {
+              //     enableHighAccuracy: true
+              //     },
+              //     trackUserLocation: true
+              //     })
+              // );
           //    <!--geolocate control till here-->
-
-           <!--map.on('click', 'point', function(e) {-->
-                  <!--var coordinates = e.features[0].geometry.coordinates.slice();-->
-                  <!--var properties = e.features[0].properties['Description'];-->
-
-                  <!--&lt;!&ndash;Ensure that if the map is zoomed out such that multiple copies of the feature are visible, the popup appears over the copy being pointed to.&ndash;&gt;-->
-                  <!--while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {-->
-                  <!--coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;-->
-                  <!--}-->
-
-                  <!--new mapboxgl.Popup()-->
-                      <!--.setLngLat(coordinates)-->
-                      <!--.setHTML(properties)-->
-                      <!--.addTo(map);-->
-                  <!--});-->
 
             //  <!--click on blue marker popup-->
               map.on('click', 'marker', function(a) {
@@ -939,6 +944,7 @@
 
                   new mapboxgl.Popup()
                       .setLngLat(coordinate)
+                      // .setHTML('<strong>Arrowhead recognized on:</strong><p>'+propertie)
                       .setHTML(propertie)
                       .addTo(map);
                   });
