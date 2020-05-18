@@ -4,6 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime as dt
 import secrets
 import pymysql
+from pytz import timezone
+import pytz
 import tensorflow as tf
 from geojson import Point, Feature
 import mysql.connector
@@ -29,48 +31,123 @@ from tensorflow.keras.preprocessing.image import img_to_array
 
 app = Flask(__name__)
 
+MAPBOX_ACCESS_KEY = 'pk.eyJ1Ijoid2VpbSIsImEiOiJja2Ewd3VzbDUwNmc2M2ZwZDV6N3pwdmhvIn0.EJHXebn_BEqc2lzZU6KrRQ'
+
 @app.route('/')
 def index():
-    locations = create_locations_makers()
-    return render_template('index.html', ACCESS_KEY=MAPBOX_ACCESS_KEY, locations=locations)
+    locations = create_locations_makers()[0]
+    latest_locatoin = create_locations_makers()[1]
+    points = create_locations_points()
+    return render_template('index.html', ACCESS_KEY=MAPBOX_ACCESS_KEY, locations=locations,
+                           arrow_location=points, latest=latest_locatoin)
 
-MAPBOX_ACCESS_KEY = 'pk.eyJ1Ijoid2VpbSIsImEiOiJja2Ewd3VzbDUwNmc2M2ZwZDV6N3pwdmhvIn0.EJHXebn_BEqc2lzZU6KrRQ'
 
 connection = mysql.connector.connect(host='scrubshrub.ciu4ws9ihfad.ap-southeast-2.rds.amazonaws.com',
                                          database='scrubshrub', user='Scrubshrub', password='sse1881ess')
-sql_select_Query = "SELECT latitude, longitude FROM scrubshrub.test WHERE isArrowhead=1"
-cursor = connection.cursor()
-cursor.execute(sql_select_Query)
-records = cursor.fetchall()
-print("Total number of rows in test is: ", cursor.rowcount)
-# tuple: (lat, lng)
 
-def get_route_image():
+
+def mel_time(record_time):
+    format = "%Y-%m-%d %H:%M:%S %Z%z"
+    tz = pytz.timezone('UTC')
+    timezone_date_time_obj = tz.localize(record_time)
+    now_mel = timezone_date_time_obj.astimezone(timezone('Australia/Melbourne'))
+    return now_mel.strftime(format)
+
+def get_latest_record():
+    sql_latest = 'select id, isArrowhead, date_time from scrubshrub.test where isArrowhead=1 and latitude is not null and longitude is not null order by date_time desc'
+    cursor = connection.cursor(buffered=True)
+    cursor.execute(sql_latest)
+    latest_record = cursor.fetchone()
+    cursor.close()
+    print(latest_record)
+    return latest_record
+
+
+
+def get_records(query):
+    cursor = connection.cursor(buffered=True)
+    cursor.execute(query)
+    records = cursor.fetchall()
+    print("Total number of rows in test is: ", cursor.rowcount)
+    cursor.close()
+    return records
+    #print(records)
+
+
+def get_route():
+    latest_record = get_latest_record()
+    sql_select_Query = "SELECT latitude, longitude, id FROM scrubshrub.test WHERE isArrowhead=1 and latitude is not null and longitude is not null"
+    records = get_records(sql_select_Query)
+    print(records)
+    # tuple: (lat, lng)
     ROUTE = []
-    for row in list(set(records)):
+    latest = []
+    for row in list(records):
         dic = {}
-        dic["lat"] = float(row[0])
-        dic["long"] = float(row[1])
-        ROUTE.append(dic)
-        return ROUTE
-
-# Mapbox driving direction API call
-ROUTE_URL = "https://api.mapbox.com/directions/v5/mapbox/driving/{0}.json?access_token={1}&overview=full&geometries=geojson"
+        dic_latest = {}
+        if row[2] == latest_record[0]:
+            time = mel_time(latest_record[2])
+            dic_latest['lat'] = float(row[0])
+            dic_latest['long'] = float(row[1])
+            dic_latest['time'] = time
+            latest.append(dic_latest)
+        else:
+            dic["lat"] = float(row[0])
+            dic["long"] = float(row[1])
+            ROUTE.append(dic)
+    return [ROUTE, latest]
 
 
 def create_locations_makers():
     locations = []
-    ROUTE = get_route_image()
+    latest_location = []
+    ROUTE = get_route()[0]
+    latest = get_route()[1]
     for i in ROUTE:
         point = Point([i['long'], i['lat']])
         properties = {
-            'icon': 'campsite'
-            # 'marker-color': '#3bb2d0'
+            'icon': 'Users arrowhead data'
         }
         feature = Feature(geometry=point, properties=properties)
         locations.append(feature)
-    print(locations)
-    return locations
+    if len(latest) > 0:
+        j = latest[0]
+        latest_point = Point([j['long'], j['lat']])
+        latest_properties = {'icon': j['time']}
+        latest_feature = Feature(geometry=latest_point, properties=latest_properties)
+        latest_location.append(latest_feature)
+    print("latest location is: ", latest_location)
+    return [locations, latest_location]
+
+
+def get_csv_points():
+    sql_select_csv = "SELECT * FROM scrubshrub.heatmap"
+    records_csv = get_records(sql_select_csv)
+    # print(records_csv)
+    # tuple: (lat, lng)
+
+    locs = []
+    for row in list(records_csv):
+        dic2 = {}
+        dic2["lat"] = float(row[1])
+        dic2["long"] = float(row[2])
+        locs.append(dic2)
+    return locs
+
+
+def create_locations_points():
+    locs = get_csv_points()
+    points = []
+    for i in locs:
+        point = Point([i['long'], i['lat']])
+        properties = {
+
+            'Description': 'Historical arrowhead data'
+        }
+        feature = Feature(geometry=point, properties=properties)
+        points.append(feature)
+    return points
+
 
 # def get_model():
 #     global model

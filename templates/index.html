@@ -19,7 +19,7 @@
   <meta property="og:description" content="">
 
   <!-- Favicons -->
-  <link href="../static/img/favicon.png" rel="icon">
+  <!-- <link href="../static/img/favicon.png" rel="icon"> -->
   <link href="../static/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -44,8 +44,6 @@
   <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
   <script src="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js"></script>
   <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css" rel="stylesheet" />
-  <!-- <script src="../static/js/home.js"></script> -->
-
 
   <style>
     /* body {
@@ -90,15 +88,16 @@
       margin-top:10px;
     }
 
+    body { margin: 0; padding: 0; }
     #map { position: relative; height: 350px;  width: 100%; }
-
+/*
 	.marker {
       background-size:cover;
       width: 50px;
       height: 62px;
       border-radius: 50%;
       cursor: pointer;
-    }
+    } */
 
     .btn1{/*dent around button*/
     /* display: inline-block; */
@@ -179,12 +178,12 @@
         </h1>
 
         <p class="tagline">
-          Conserve Barmah National Park by making it Arrowhead-free.
+          Conserve Barmah National Park by making it Arrowhead-free
         </p>
         <div class="overlay-detail">
           <!-- <a href="#about"><i class="fa fa-chevron-circle-down" style='font-size:48px;color:white; margin-top: 10px;'></i></a>
           <a href="#find"><i class="fa fa-camera" style='font-size:48px;color:white; margin-top: 10px;'></i></a> -->
-          <a class="btn btn-xs" href="#about" id="btn1">Get Started</a>
+          <a class="btn btn-xs" href="#about" id="btn1">Get Started Now</a>
         </div>
         <br>
         <div class="overlay-detail" style="margin-bottom: 20px;">
@@ -758,33 +757,210 @@
         </div>
       </div>
 
-      <div class="map", id="map">
-          <!-- Insert map here for dexi and wei-->
-          <script>
-            mapboxgl.accessToken = 'pk.eyJ1Ijoid2VpbSIsImEiOiJja2Ewd3VzbDUwNmc2M2ZwZDV6N3pwdmhvIn0.EJHXebn_BEqc2lzZU6KrRQ';
-            var map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/mapbox/streets-v11',
-                center: [145.1175, -35.8667],
-                zoom: 9
-             });
-            map.on('load', function () {
-            var locations = {{ locations|safe }};
-            locations.forEach(function(marker) {
-               var el = document.createElement('div');
-               el.className = 'marker';
-               el.style.backgroundImage = 'url(https://i.imgur.com/MK4NUzI.png)';
-               el.style.left = '-15px';
-               el.style.top = '-32px';
+      <style>
+          .legend {
+              background-color: #fff;
+              border-radius: 3px;
+              top: 5px;
+              box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+              font: 12px/15px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+              padding: 10px;
+              position: absolute;
+              left: 5px;
+              z-index: 1;
+          }
 
-               new mapboxgl.Marker(el)
-                 .setLngLat(marker.geometry.coordinates)
-                 .addTo(map);
-               });
-            });
-        </script>
-        </div>
-        </div>
+          .legend h4 {
+              margin: 0 0 10px;
+          }
+
+          .legend div span {
+              border-radius: 50%;
+              display: inline-block;
+              height: 13px;
+              margin-right: 5px;
+              width: 13px;
+              background-position: center;
+              background-size: 100% 100%;
+          }
+      </style>
+      <div id="map">
+          <div id="marker-legend" class="legend" style="display: block;">
+              <h4>Markers</h4>
+              <div><span style="background-image: url('./static/img/circle_red.png')"></span>Historical arrowhead location</div>
+              <div><span style="background-image: url('./static/img/marker_red.png')"></span>Last arrowhead recognized location </div>
+              <div><span style="background-image: url('./static/img/marker1.png')"></span>All arrowhead recognized locations</div>
+          </div>
+      </div>
+
+      <script>
+          mapboxgl.accessToken = 'pk.eyJ1Ijoid2VpbSIsImEiOiJja2Ewd3VzbDUwNmc2M2ZwZDV6N3pwdmhvIn0.EJHXebn_BEqc2lzZU6KrRQ';
+          var map = new mapboxgl.Map({
+              container: 'map',
+              style: 'mapbox://styles/mapbox/streets-v11',
+              center: [145.1175, -35.8667],
+              zoom: 10
+          });
+
+          //            var countyLegendEl = document.getElementById('county-legend');
+          //            map.on('zoom', function() {
+          //                countyLegendEl.style.display = 'block';
+          //            });
+
+
+          //<!--add navigation control bar -->
+          map.addControl(new mapboxgl.NavigationControl());
+
+
+          map.on('load', function () {
+              <!--add user data points with grass marker-->
+              map.loadImage(
+                  './static/img/marker1.png',
+                  function(error, image) {
+                  if (error) throw error;
+                  map.addImage('marker', image);
+                  map.addSource('marker', {
+                      'type': 'geojson',
+                      'data': {
+                          'type': 'FeatureCollection',
+                          'features': {{ locations|safe }}
+                      }
+                  });
+
+                  map.addLayer({
+                      'id': 'marker',
+                      'type': 'symbol',
+                      'source': 'marker',
+                      'layout': {
+                          'icon-image': 'marker',
+                          'icon-allow-overlap': true,
+                          'icon-size': 0.35
+                      }
+                  });
+              }
+          );
+          //<!--load image till here-->
+
+
+              //<!--add latest user data points with red marker-->
+              map.loadImage(
+                  './static/img/marker_red.png',
+                  function(error, image) {
+                  if (error) throw error;
+                  map.addImage('marker_latest', image);
+                  map.addSource('marker_latest', {
+                      'type': 'geojson',
+                      'data': {
+                          'type': 'FeatureCollection',
+                          'features': {{ latest|safe }}
+                      }
+                  });
+
+                  map.addLayer({
+                      'id': 'marker_latest',
+                      'type': 'symbol',
+                      'source': 'marker_latest',
+                      'layout': {
+                          'icon-image': 'marker_latest',
+                          'icon-allow-overlap': true,
+                          'icon-size': 0.12
+                      }
+                  });
+              }
+          );
+          //<!--load image till here-->
+
+              //<!--add csv data points with dot-->
+              map.loadImage(
+                  './static/img/circle_red.png',
+                  function(error, image2) {
+                  if (error) throw error;
+                  map.addImage('dot', image2);
+                  map.addSource('point', {
+                      'type': 'geojson',
+                      'data': {
+                          'type': 'FeatureCollection',
+                          'features': {{ arrow_location|safe }}
+                      }
+                  });
+
+                  map.addLayer({
+                      'id': 'point',
+                      'type': 'symbol',
+                      'source': 'point',
+                      'layout': {
+                          'icon-image': 'dot',
+                          'icon-allow-overlap': true,
+                          'icon-size': 0.55
+                      }
+                  });
+              }
+              );
+             // <!--load image till here-->
+
+             // <!--Add geolocate control to the map.-->
+              map.addControl(
+                  new mapboxgl.GeolocateControl({
+                  positionOptions: {
+                  enableHighAccuracy: true
+                  },
+                  trackUserLocation: true
+                  })
+              );
+          //    <!--geolocate control till here-->
+
+           <!--map.on('click', 'point', function(e) {-->
+                  <!--var coordinates = e.features[0].geometry.coordinates.slice();-->
+                  <!--var properties = e.features[0].properties['Description'];-->
+
+                  <!--&lt;!&ndash;Ensure that if the map is zoomed out such that multiple copies of the feature are visible, the popup appears over the copy being pointed to.&ndash;&gt;-->
+                  <!--while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {-->
+                  <!--coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;-->
+                  <!--}-->
+
+                  <!--new mapboxgl.Popup()-->
+                      <!--.setLngLat(coordinates)-->
+                      <!--.setHTML(properties)-->
+                      <!--.addTo(map);-->
+                  <!--});-->
+
+            //  <!--click on blue marker popup-->
+              map.on('click', 'marker', function(a) {
+                  var coordinate = a.features[0].geometry.coordinates.slice();
+                  var propertie = a.features[0].properties['icon'];
+
+                  while (Math.abs(a.lngLat.lng - coordinate[0]) > 180) {
+                  coordinate[0] += a.lngLat.lng > coordinate[0] ? 360 : -360;
+                  }
+
+                  new mapboxgl.Popup()
+                      .setLngLat(coordinate)
+                      .setHTML(propertie)
+                      .addTo(map);
+                  });
+          //    <!--END:click on blue marker popup-->
+
+         //     <!--click on red marker popup-->
+              map.on('click', 'marker_latest', function(a) {
+                  var coordinate = a.features[0].geometry.coordinates.slice();
+                  var propertie = a.features[0].properties['icon'];
+
+                  while (Math.abs(a.lngLat.lng - coordinate[0]) > 180) {
+                  coordinate[0] += a.lngLat.lng > coordinate[0] ? 360 : -360;
+                  }
+
+                  new mapboxgl.Popup()
+                      .setLngLat(coordinate)
+                      .setHTML('<strong>Last successful arrowhead recognition on:</strong><p>'+propertie)
+                      .addTo(map);
+                  });
+        //      <!--END:click on red marker popup-->
+
+
+          });
+    //      <!--map.on till here-->
+
+      </script>
 
     </section>
     <!-- End Map Section -->
