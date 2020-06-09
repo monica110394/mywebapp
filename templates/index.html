@@ -46,11 +46,6 @@
   <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css" rel="stylesheet" />
 
   <style>
-    /* body {
-      margin:0px;
-      height:100vh;
-      background:#333;
-    } */
     .center {
       height:100%;
       display:flex;
@@ -75,8 +70,6 @@
       background:#199EB8;
       color:#fff;
       font-size:20px;
-      /* font-family:"Open Sans",sans-serif; */
-      /* text-transform:Uppercase; */
       font-weight:600;
       border-radius:10px;
       cursor:pointer;
@@ -90,17 +83,8 @@
 
     body { margin: 0; padding: 0; }
     #map { position: relative; height: 350px;  width: 100%; }
-/*
-	.marker {
-      background-size:cover;
-      width: 50px;
-      height: 62px;
-      border-radius: 50%;
-      cursor: pointer;
-    } */
 
-    .btn1{/*dent around button*/
-    /* display: inline-block; */
+    .btn1{
     position: relative;
     text-decoration: none;
     color: rgba(3, 169, 244, 0.54);
@@ -157,7 +141,6 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-
   </style>
 </head>
 
@@ -174,22 +157,19 @@
 
       <div class="col-md-12">
         <h1>
-          Welcome to the Arrowhead Movement
+          Welcome to the Arrowhead Mitigation Movement
         </h1>
 
         <p class="tagline">
           Conserve Barmah National Park by making it Arrowhead-free
         </p>
         <div class="overlay-detail">
-          <!-- <a href="#about"><i class="fa fa-chevron-circle-down" style='font-size:48px;color:white; margin-top: 10px;'></i></a>
-          <a href="#find"><i class="fa fa-camera" style='font-size:48px;color:white; margin-top: 10px;'></i></a> -->
           <a class="btn btn-xs" href="#about" id="btn1">Get Started Now</a>
         </div>
         <br>
         <div class="overlay-detail" style="margin-bottom: 20px;">
-          <a class="btn btn-xs" href="#find" id="btn2">Click a Picture</a>
+          <a class="btn btn-xs" href="#contact" id="btn2">Take a Photo</a>
         </div>
-        <!-- <a class="btn btn-full" href="#about">Get Started Now</a> -->
       </div>
     </div>
   </section>
@@ -201,28 +181,16 @@
 
       <div id="logo" class="pull-left">
         <a href="index.html"><img src="../static/img/navlogo.png" alt=""></a>
-        <!-- Uncomment below if you prefer to use a text image -->
-        <!-- <h1><a href="#hero">Bell</a></h1> -->
       </div>
-
+      <!-- #nav-menu-container -->
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li><a href="#about">About Arrowhead</a></li>
-          <li><a href="#features">Features</a></li>
+          <li><a href="#about">About Arrowheads</a></li>
           <li><a href="#portfolio">Gallery</a></li>
-          <li><a href="#find">Find Arrowhead</a></li>
-          <li><a href="#map">Distribution</a></li>
-          <!-- <li><a href="#contact">Contact Us</a></li> -->
+          <li><a href="#features">Features</a></li>
+          <li><a href="#contact">Take a Photo</a></li>
+          <li><a href="#map">Locate Arrowheads</a></li>
         </ul>
-      </nav>
-      <!-- #nav-menu-container -->
-
-      <nav class="nav social-nav pull-right d-none d-lg-inline">
-        <a href="https://www.facebook.com/scrubshrubs/"><i class="fa fa-facebook"></i></a>
-        <a href="https://github.com/monica110394/mywebapp"><i class="fa fa-github" aria-hidden="true" style="font-size: 28px;"></i></i></a>
-        <!-- &nbsp;&nbsp; -->
-        <!-- <img src="../static/img/rsz_site-logo-white.png" style="margin-bottom: 10px;"> -->
-        <a href="https://mahara.infotech.monash.edu.au/mahara/view/view.php?id=45296"><img src="../static/img/rsz_site-logo-white.png" style="margin-bottom: 10px;"></a>
       </nav>
     </div>
   </header><!-- End Header -->
@@ -234,7 +202,7 @@
 
       <div class="container text-center">
         <h2>
-          About Arrowhead
+          About Arrowheads
         </h2>
 
         <p>
@@ -250,29 +218,30 @@
         </p>
 
         <div class="row stats-row">
+        <div class="container text-center"><h2>Harmful Impacts</h2></div>
 
           <div class="stats-col text-center col-md-3 col-sm-6">
-          <!--  <div class="circle">
-              <span class="stats-no" data-toggle="counter-up">232</span> In Australia
-            </div> -->
-          </div>
-
-          <div class="stats-col text-center col-md-3 col-sm-6">
-            <div class="circle">
-              <span class="stats-no" data-toggle="counter-up">579</span> Arrowheads In Australia
+           <div class="circle">
+              <p style="margin: -15px auto">Block Irrigation Channels</p>
             </div>
           </div>
 
           <div class="stats-col text-center col-md-3 col-sm-6">
             <div class="circle">
-              <span class="stats-no" data-toggle="counter-up">376</span> Arrowheads in Barmah Forest
+               <p style="margin: -15px auto">Increase Flood Probability</p>
             </div>
           </div>
 
           <div class="stats-col text-center col-md-3 col-sm-6">
-          <!--  <div class="circle">
-              <span class="stats-no" data-toggle="counter-up">79</span> Barmah Forest
-            </div> -->
+            <div class="circle">
+               <p>Soil Erosion</p>
+            </div>
+          </div>
+
+          <div class="stats-col text-center col-md-3 col-sm-6">
+           <div class="circle">
+               <p style="margin: -15px auto">Loss of Native Biodiversity</p>
+            </div>
           </div>
         </div>
 
@@ -280,150 +249,6 @@
 
     </section>
     <!-- End About Section -->
-
-
-
-    <!-- ======= Features Section ======= -->
-    <section class="features" id="features">
-
-      <div class="container">
-        <h2 class="text-center">
-          Features
-        </h2>
-
-        <div class="row">
-
-           <!-- ======= GALLERY ======= -->
-          <div class="feature-col col-lg-4 col-xs-12">
-            <div class="card card-block text-center">
-              <div>
-                <div class="feature-icon">
-                  <i class="fa fa-picture-o" aria-hidden="true" style="font-size:x-large;"></i>
-                </div>
-              </div>
-              <div>
-                <h3>
-                  View Gallery
-                </h3>
-                <p>
-                  Our team has sourced images of Arrowhead for your reference
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- ======= TIPS ======= -->
-          <div class="feature-col col-lg-4 col-xs-12">
-            <div class="card card-block text-center">
-              <div>
-                <div class="feature-icon">
-                  <i class="fa fa-camera" aria-hidden="true" style="font-size: x-large;"></i>
-                </div>
-              </div>
-              <div>
-                <h3>
-                  View Tips
-                </h3>
-                <p>
-                  Check out the correct way to click a picture
-                </p>
-              </div>
-            </div>
-          </div>
-
-
-        <!-- ======= IDENTIFY ======= -->
-        <div class="feature-col col-lg-4 col-xs-12">
-          <div class="card card-block text-center">
-            <div>
-              <div class="feature-icon">
-                <i class="fa fa-search" aria-hidden="true" style="font-size:x-large;"></i>
-                <!-- <span class="fa fa-envelope"></span> -->
-              </div>
-            </div>
-            <div>
-              <h3>
-              Identify Arrowhead
-              </h3>
-              <p>
-              Identify whether a plant is an Arrowhead using our AI technology
-              </p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="row">
-
-        <!-- ======= LOCATION ======= -->
-        <div class="feature-col col-lg-4 col-xs-12">
-          <div class="card card-block text-center">
-            <div>
-              <div class="feature-icon">
-                <i class="fa fa-location-arrow" aria-hidden="true" style="font-size:xx-large;"></i>
-                <!-- <span class="fa fa-database"></span> -->
-              </div>
-            </div>
-
-            <div>
-              <h3>
-                Share Location
-              </h3>
-              <p>
-                Switch on your GPS to help us locate Arrowhead
-              </p>
-            </div>
-          </div>
-        </div>
-
-         <!-- ======= REPORT ======= -->
-        <div class="feature-col col-lg-4 col-xs-12">
-          <div class="card card-block text-center">
-            <div>
-              <div class="feature-icon text-center" >
-                <i class="fa fa-flag" aria-hidden="true" style="font-size: x-large;"></i>
-                <!-- <span class="fa fa-cutlery"></span> -->
-              </div>
-            </div>
-
-            <div class="text-center">
-              <h3>
-                Report
-              </h3>
-              <p>
-                Help report the Arrowhead
-              </p>
-            </div>
-          </div>
-        </div>
-
-         <!-- ======= MAP ======= -->
-        <div class="feature-col col-lg-4 col-xs-12">
-          <div class="card card-block text-center">
-            <div>
-              <div class="feature-icon">
-                <i class="fa fa-map" aria-hidden="true"></i>
-
-                <!-- <span class="fa fa-dashboard"></span> -->
-              </div>
-            </div>
-
-            <div>
-              <h3>
-                View Distribution
-              </h3>
-              <p>
-                See the Arrowheads around you on the map
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    </section><!-- End Features Section -->
-
 
     <!-- ======= Gallery Section ======= -->
     <section class="portfolio" id="portfolio">
@@ -558,34 +383,105 @@
     </section>
     <!-- End Portfolio Section -->
 
+    <!-- ======= Features Section ======= -->
+    <section class="features" id="features">
+
+      <div class="container">
+        <h2 class="text-center">
+          Features
+        </h2>
+
+        <div class="row">
+
+          <!-- ======= IDENTIFY ======= -->
+          <div class="feature-col col-lg-4 col-xs-12">
+            <div class="card card-block text-center">
+              <div>
+                <div class="feature-icon">
+                  <i class="fa fa-search" aria-hidden="true" style="font-size:x-large;"></i>
+                  <!-- <span class="fa fa-envelope"></span> -->
+                </div>
+              </div>
+              <div>
+                <h3>
+                Identify Arrowhead
+                </h3>
+                <p>
+                Identify whether a plant is an Arrowhead using our AI technology
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ======= REPORT ======= -->
+         <div class="feature-col col-lg-4 col-xs-12">
+           <div class="card card-block text-center">
+             <div>
+               <div class="feature-icon text-center" >
+                 <i class="fa fa-location-arrow" aria-hidden="true" style="font-size: xx-large;"></i>
+                 <!-- <span class="fa fa-cutlery"></span> -->
+               </div>
+             </div>
+
+             <div class="text-center">
+               <h3>
+                 Report Arrowhead
+               </h3>
+               <p>
+                 Share the photo and location of the identified Arrowhead
+               </p>
+             </div>
+           </div>
+         </div>
+
+         <!-- ======= MAP ======= -->
+        <div class="feature-col col-lg-4 col-xs-12">
+          <div class="card card-block text-center">
+            <div>
+              <div class="feature-icon">
+                <i class="fas fa-map-marked-alt" aria-hidden="true" style="font-size: xx-large;"></i>
+
+
+                <!-- <span class="fa fa-dashboard"></span> -->
+              </div>
+            </div>
+
+            <div>
+              <h3>
+                View Arrowheads
+              </h3>
+              <p>
+                See the locations of the Arrowheads around you on the map
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    </section><!-- End Features Section -->
 
 
     <!-- ======= Identify Section ======= -->
 
     <section id="contact">
       <div class="container text-center">
-        <h2 class="section-title">Find Arrowhead</h2>
+        <h2 class="section-title"></h2>
 
-        <div class="find", id="find">
+        <div class="find">
         <div class="row">
                 <div class="col-lg-12 container-fluid text-center">
-                  <img src="../static/img/info-93.png">&nbsp;<span>Please click a picture of one leaf at a time</span>
+                  <img src="../static/img/info-93.png">&nbsp;<span>Please take photo of one leaf at a time and then press the leaf below.</span>
                 </div>
             </div>
         </div>
 
-
-        <!-- <div class="col-lg-4 text-center"> -->
-
-
-          <!-- <div> -->
           <br>
-            <!-- <div class="col-lg-12 text-center"> -->
-                <!-- ======= Start of Monica's code ======= -->
-                <!-- ======= Monica's code for selecting image ======= -->
+                <!-- ======= Start of Prediction code ======= -->
+                <!-- ======= Prediction code for selecting image ======= -->
                 <div class="center">
                   <div class="form-input">
-                    <label for="image-selector">Click a Picture</label>
+                    <label for="image-selector">Take a Photo</label>
                     <input id="image-selector" name="myFile" type="file" class="btn" style="font-size: 20px;
                       font-weight: bolder; border-radius: 10px" accept="image/*" onchange="showPreview(event)" capture>
                     <div class="preview">
@@ -594,7 +490,7 @@
                   </div>
                 </div>
 
-                <!-- ======= Monica's script for previewing selected image ======= -->
+                <!-- ======= Prediction script for previewing selected image ======= -->
                 <script>
                 function showPreview(event){
                     if(event.target.files.length > 0){
@@ -607,15 +503,12 @@
                 </script>
                 <br>
 
-               <!-- <button type="submit" id="predict-button" class="btn btn-primary" style="font-size: 20px;font-weight: bolder; border-radius: 10px;"
-               data-toggle="modal" data-target="#submit">Identify</button> -->
-
                <button href="#" type="submit" id="predict-button" class="btn1" style="font-size: 20px;font-weight: bolder; border-radius: 10px;"
                data-toggle="modal" data-target="#submit">
 	                <i class="fa fa-leaf" color=#199EB8></i>
               </button>
 
-               <!-- ======= Monica's script for prediction ======= -->
+               <!-- ======= Prediction script for prediction ======= -->
                <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
                <script>
                    let base64Image;
@@ -675,8 +568,8 @@
                      </div>
 
                    <div id="myLoad">
-                     <div class="loader" style="margin-left: 165px; margin-top: 50px;"></div>
-                     <p>Analyzing the image...</p>
+                      <div class="loader" style="margin: 10px auto; margin-top: 50px"></div>
+                      <div><span>Analyzing the image...<br>This might take a while. Thank you for your patience!</span></div>
                    </div>
 
                    <div id="myMessage">
@@ -689,7 +582,6 @@
                    </div>
 
                      <script>
-                             // document.getElementById("myLoad").style.visibility = "hidden";
                              document.getElementById("myMessage").style.visibility = "hidden";
                      </script>
 
@@ -742,10 +634,7 @@
                                });
                      }
                  </script>
-               <!-- ======= End of Monica's code ======= -->
-        <!-- </div> -->
-      <!-- </div> -->
-      <!-- </div> -->
+               <!-- ======= End of Prediction code ======= -->
     </section>
     <!-- End Identify Section -->
 
@@ -756,7 +645,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
-            <h2 class="section-title">Distribution</h2>
+            <h2 class="section-title">Locate Arrowheads</h2>
           </div>
         </div>
       </div>
@@ -799,9 +688,9 @@
         <div id="marker-legend" class="legend" style="display: block;">
           <h4>Legend</h4>
           <div>
-            <img class="myImg"; src="./static/img/marker1.png" />Arrowhead Recognized Locations<br>
-            <img class="myImg"; src="./static/img/marker_red.png" />Last Arrowhead Recognized Location<br>
-            <img class="myImg"; src="./static/img/circle_red.png" />Historical Arrowhead Locations<br>
+              <img class="myImg"; src="./static/img/marker1.png" />All Reported Arrowheads<br>
+              <img class="myImg"; src="./static/img/marker_red.png" />Last Reported Arrowhead<br>
+              <img class="myImg"; src="./static/img/circle_red.png" />Arrowhead Sightings*<br>
           </div>
        </div>
       </div>
@@ -971,10 +860,11 @@
     //      <!--map.on till here-->
 
       </script>
-
+    
+    <!-- <p style="font-size:15px">&nbsp;<span style="font-size:25px">*</span>Arrowhead sightings recorded by Atlas of Living Australia (1959-2020)</p> -->
+    <p style="font-size:10px">&nbsp;*Arrowhead sightings recorded by Atlas of Living Australia (1959-2020)</p>
     </section>
     <!-- End Map Section -->
-
 
   </main>
 <!-- End #main -->
@@ -985,29 +875,14 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-lg-6 col-xs-12 text-lg-left text-center">
-            <p class="copyright-text">
-              &copy; Copyright <strong>ScrubShrubs</strong>. All Rights Reserved
-            </p>
-            <div class="credits">
-              <!--
-              All the links in the footer should remain intact.
-              You can delete the links only if you purchased the pro version.
-              Licensing information: https://bootstrapmade.com/license/
-              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Bell
-            -->
-              Designed by <a href="https://mahara.infotech.monash.edu.au/mahara/view/view.php?id=45296">FloraGuru</a>
-            </div>
-          </div>
-
-          <div class="col-lg-6 col-xs-12 text-lg-right text-center">
+          <div class="col-lg-8 col-xs-12 text-lg-left text-center">
             <ul class="list-inline">
               <li class="list-inline-item">
                 <a href="#">Home</a>
               </li>
 
               <li class="list-inline-item">
-                <a href="#about">About Arrowhead</a>
+                <a href="#about">About Arrowheads</a>
               </li>
 
               <li class="list-inline-item">
@@ -1015,17 +890,36 @@
               </li>
 
               <li class="list-inline-item">
-                <a href="#find">Find Arrowhead</a>
+                <a href="#contact">Take a Photo</a>
               </li>
 
               <li class="list-inline-item">
-                <a href="#map">Distribution</a>
+                <a href="#map">Locate Arrowheads</a>
               </li>
-
             </ul>
           </div>
 
+          <div class="col-lg-4 col-xs-12 text-lg-right text-center">
+            <p>Contact Us: <strong>scrubshrubsvic@gmail.com</strong></p>
+            <a href="https://www.facebook.com/scrubshrubs/"><i class="fa fa-facebook"  style="font-size: large; color: white"></i></a>&nbsp;&nbsp;
+            <a href="https://github.com/monica110394/mywebapp"><i class="fa fa-github" aria-hidden="true" style="font-size: x-large; color: white"></i></i></a>
+          </div>
+
         </div>
+
+        <br>
+
+        <div class="row">
+          <div class="col-lg-12 col-xs-12 text-lg-center text-center">
+            <p class="copyright-text">
+              &copy; Copyright <strong>ScrubShrubs</strong>. All Rights Reserved
+            </p>
+            <div class="credits">
+              Designed by <a href="https://bit.ly/floraweed">FloraGuru</a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </footer><!-- End Footer -->
