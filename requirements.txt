@@ -9,7 +9,7 @@ numpy
 PyMySQL==0.9.3
 SQLAlchemy==1.3.13
 tensorboard==1.13.1
-tensorflow==1.13.1
+tensorflow==1.15.4
 tensorflow-estimator==1.13.0
 Pillow
 google-cloud-storage
